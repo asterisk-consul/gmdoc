@@ -4,8 +4,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default withMermaid(
   defineConfig({
-    base: "/Doc-Flows/",
-    title: "Flows Manager",
+    base: "/gmdoc/",
+    title: "GM documentacion",
     description: "Prueba",
 
     vite: {
