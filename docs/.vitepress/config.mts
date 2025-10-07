@@ -2,10 +2,52 @@ import { defineConfig, type DefaultTheme } from "vitepress";
 import { withMermaid } from "vitepress-plugin-mermaid";
 import tailwindcss from "@tailwindcss/vite";
 
+// aca insertamos fs, path y matter
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+interface DocWithTags {
+  file: string;
+  title?: string;
+  tags?: string[];
+  [key: string]: any;
+}
+function getDocsWithTags(): DocWithTags[] {
+  const rootDir = path.resolve(__dirname, "../");
+
+  function readDirRecursively(dir: string): string[] {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    return entries.flatMap((entry) => {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        return readDirRecursively(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith(".md")) {
+        return [fullPath];
+      }
+      return [];
+    });
+  }
+
+  const files = readDirRecursively(rootDir);
+
+  const docs: DocWithTags[] = files.map((file) => {
+    const raw = fs.readFileSync(file, "utf-8");
+    const { data } = matter(raw);
+    return {
+      file: path.relative(rootDir, file).replace(/\\/g, "/"),
+      ...data,
+    };
+  });
+
+  // Filtramos solo los que tienen tags
+  return docs.filter((doc): doc is DocWithTags => Array.isArray(doc.tags));
+}
+
 export default withMermaid(
   defineConfig({
     base: "/gmdoc/",
-    title: "GM documentacion",
+    title: "GM",
     description: "Prueba",
 
     vite: {
@@ -13,19 +55,31 @@ export default withMermaid(
         include: ["mermaid"],
       },
       plugins: [tailwindcss()],
+      define: {
+        __DOCS_WITH_TAGS__: JSON.stringify(getDocsWithTags()), // 👈 acá
+      },
     },
     themeConfig: {
+      logo: "/logGM.webp",
       nav: [
-        { text: "Home", link: "/" },
+        { text: "Inicio", link: "/" },
+        { text: "Tags", link: "/tags" },
         { text: "Soporte", link: "https://surl.li/kmiuwb" },
       ],
       sidebar: {
+        "/tags": [
+          {
+            text: "Tags",
+            link: "/tags",
+          },
+        ],
         "/reportes/": sidebarReportes(),
         "/flows/": sidebarFlows(),
+        "/casosParticulares/": sidebarCasosParticulares(),
       },
 
       socialLinks: [
-        { icon: "github", link: "https://github.com/vuejs/vitepress" },
+        { icon: "github", link: "https://github.com/asterisk-consul/gmdoc" },
       ],
 
       lastUpdated: {
@@ -57,64 +111,30 @@ function sidebarReportes(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: "Reportes",
+      link: "/reportes/",
       collapsed: false,
       items: [
-        { text: "Indice", link: "/reportes/" },
         {
           text: "Manual de Uso",
           collapsed: true,
           items: [
+            { text: "Cheques", link: "/reportes/Cheques" },
             {
               text: "Control de tareas/tiempos",
               link: "/reportes/ControlTiempo_Usuario",
             },
+            { text: "Compras", link: "/reportes/COMPRAS_maestro" },
+            { text: "Cuentas", link: "/reportes/CTACTEPROV" },
             {
-              text: "Compras",
-              link: "/reportes/COMPRAS_maestro",
+              text: "Estado integral de cuentas",
+              link: "/reportes/estadoIntegraldeCuentas/estadoIntegraldeCuentas",
             },
+            { text: "Producción", link: "/reportes/controlDeMuebles" },
             {
-              text: "Producción",
-              link: "/reportes/controlDeMuebles",
+              text: "RemitosVSCompras",
+              link: "/reportes/RemitosVsCompras",
             },
-            { text: "RemitosVSCompras", link: "/reportes/RemitosVsCompras" },
-            {
-              text: "Cheques",
-              link: "/reportes/Cheques",
-            },
-            {
-              text: "Cuentas",
-              link: "/reportes/CTACTEPROV",
-            },
-            {
-              text: "Sueldos",
-              link: "/reportes/manual_usuario_rhsueldos",
-            },
-            {
-              text: "Cisterna",
-              link: "/reportes/CisternaUsuario",
-            },
-          ],
-        },
-        {
-          text: "Manual Tecnico",
-          collapsed: true,
-          items: [
-            {
-              text: "Control de tareas/tiempos",
-              link: "/reportes/ControlTiempo_Tecnico",
-            },
-            {
-              text: "Producción",
-              link: "/reportes/ControlTiempo_Produccion",
-            },
-            {
-              text: "Sueldos",
-              link: "/reportes/jasper_report_doc",
-            },
-            {
-              text: "Cisterna",
-              link: "/reportes/CisternaTecnico",
-            },
+            { text: "Sueldos", link: "/reportes/manual_usuario_rhsueldos" },
           ],
         },
         {
@@ -133,15 +153,15 @@ function sidebarReportes(): DefaultTheme.SidebarItem[] {
 function sidebarFlows(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: "Flows",
+      text: "Flujos",
+      link: "/flows/",
       collapsed: false,
       items: [
-        { text: "Inicio", link: "/flows/" },
         {
           text: "Ajustes",
+          link: "/flows/ajustes/",
           collapsed: true,
           items: [
-            { text: "Ajustes", link: "/flows/ajustes/ajuste" },
             {
               text: "Realizar Ajuste",
               link: "/flows/ajustes/50301RealizarAjuste",
@@ -153,14 +173,52 @@ function sidebarFlows(): DefaultTheme.SidebarItem[] {
           ],
         },
         {
-          text: "Mejoras",
+          text: "Compras y Pagos",
+          link: "/flows/comprasypagos/",
           collapsed: true,
           items: [
             {
-              text: "Hallazgos",
-              link: "/flows/PM_Hallazgos/hallazgo",
+              text: "Orden de Compra",
+              link: "/flows/comprasypagos/orden_De_Compra",
+            },
+            {
+              text: "Ejecutar la compra",
+              link: "/flows/comprasypagos/ejecutar_Compra",
             },
           ],
+        },
+        {
+          text: "Egresos",
+          link: "/flows/egresos/egresos",
+          collapsed: true,
+        },
+      ],
+    },
+  ];
+}
+
+function sidebarCasosParticulares(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: "Casos Particulares",
+      link: "/casosParticulares/",
+      collapsed: false,
+      items: [
+        {
+          text: "Cuentas Corrientes",
+          link: "/casosParticulares/cuentasCorrientes/guia_cuentas_corrientes",
+          collapsed: true,
+          items: [
+            {
+              text: "Colocar cuentas corrientes",
+              link: "/casosParticulares/cuentasCorrientes/colocarCuentasCorrientes",
+            },
+          ],
+        },
+        {
+          text: "Cuentas Contables",
+          link: "/casosParticulares/cuentasContables/",
+          collapsed: true,
         },
       ],
     },

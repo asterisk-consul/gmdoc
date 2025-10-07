@@ -3,24 +3,28 @@
 layout: home
 
 hero:
-  name: "Flows Manager"
+  name: "GM"
   text: "Documentacion "
   tagline:
   actions:
     - theme: brand
-      text: Flows
+      text: Flujos
       link: /flows/index.md
     - theme: alt
       text: Reportes
       link: /reportes/index.md
+    - theme: alt
+      text: Casos Particulares
+      link: /casosParticulares/index.md
 
   image:
-    src: /LogoFlows.png
-    alt: VitePress
+    src: /logGM.webp
+    alt: GM
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Cuentas Corrientes
+    details: Esta guía cubre los procedimientos y la documentación necesaria para la gestión y apertura de cuentas corrientes empresariales y particulares.
+    link: /casosParticulares/cuentasCorrientes/guia_cuentas_corrientes.md
   - title: Feature B
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C

@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a}from"./chunks/framework.UbkNbVxG.js";const f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"flows/Ventas/index.md","filePath":"flows/Ventas/index.md","lastUpdated":null}'),n={name:"flows/Ventas/index.md"};function s(o,r,d,c,i,l){return a(),t("div")}const _=e(n,[["render",s]]);export{f as __pageData,_ as default};
