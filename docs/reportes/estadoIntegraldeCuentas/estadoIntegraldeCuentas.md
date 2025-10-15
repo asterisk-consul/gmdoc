@@ -83,3 +83,10 @@ Debajo del resumen se muestra la tabla con los detalles de cada cuenta:
 - Verificar periódicamente los saldos y días de antigüedad para mantener la información actualizada.
 
 ## 7. Video
+
+<ClientOnly>
+  <lite-youtube 
+    videoid="i02fYNrmM10" 
+    videotitle="Estado integral de cuentas corrientes"
+  />
+</ClientOnly>

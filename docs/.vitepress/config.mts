@@ -129,6 +129,7 @@ function sidebarReportes(): DefaultTheme.SidebarItem[] {
               text: "Estado integral de cuentas",
               link: "/reportes/estadoIntegraldeCuentas/estadoIntegraldeCuentas",
             },
+            { text: "Gastos", link: "/reportes/Gastos/" },
             { text: "Producción", link: "/reportes/controlDeMuebles" },
             {
               text: "RemitosVSCompras",
@@ -219,6 +220,12 @@ function sidebarCasosParticulares(): DefaultTheme.SidebarItem[] {
           text: "Cuentas Contables",
           link: "/casosParticulares/cuentasContables/",
           collapsed: true,
+          items: [
+            {
+              text: "Plan de Cuentas",
+              link: "/casosParticulares/cuentasContables/planCuentas",
+            },
+          ],
         },
       ],
     },
