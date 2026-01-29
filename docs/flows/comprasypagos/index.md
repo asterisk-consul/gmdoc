@@ -13,7 +13,8 @@ flowchart TD
     C --> D{"¿Es necesario<br/>Remito de Ingreso?"}:::decision
     D -->|Sí| E["Realizar<br/>Remito de Ingreso"]
     E --> C
-    D -->|Finalizar| F["12.2.09 Archivo OC"]:::final
+    D -->|No| F["12.2.10 Corroborar/a pagar"]
+    F-->|Finalizar| G["12.2.09 Archivo OC"]:::final
 
     %% Leyenda
     subgraph Leyenda
@@ -28,8 +29,10 @@ flowchart TD
     classDef final fill:#fb923c,stroke:#f97316,stroke-width:2px,color:#000
 
     %% Enlaces a archivos Markdown (índice)
-    click A "./orden_De_Compra.md"
-    click C "./ejecutar_Compra.md"
+    click A "./orden_De_Compra"
+    click C "./ejecutar_Compra"
+    click E "./remito_de_Ingreso"
+    click F "./corroborar_compra"
 ```
 
 # Flujo de Compras y Pagos
@@ -41,25 +44,21 @@ El sistema no es más que el espejo digital de lo que pasa día a día: pedir me
 
 1. **Orden de compra (12.2.01)**  
    En la práctica, este paso representa la **decisión de comprar algo**: un insumo, una mercadería o un material necesario.
-
    - Aquí se pide lo que se necesita al proveedor.
    - La Orden de Compra es el documento que respalda ese pedido.
 
 2. **Decisión de ejecución**  
    Una vez que la orden está hecha, la empresa debe definir si **realmente se ejecuta** (es decir, si se confirma la compra).
-
    - Si no se aprueba, la compra no se lleva adelante.
    - Si se aprueba, se avanza hacia la ejecución.
 
 3. **Ejecutar compra (12.2.05)**  
    Este paso corresponde al **momento en que efectivamente se hace la compra**.
-
    - Se concreta el pago o el compromiso con el proveedor.
    - La empresa recibe la confirmación de que la mercadería está en camino o se entrega.
 
 4. **Remito de Ingreso**  
     Cuando el proveedor entrega la mercadería, lo hace con un **remito**.
-
    - Ese remito es la prueba de que los bienes ingresaron realmente a la empresa.
    - En este momento se revisa que lo recibido coincida con lo que se pidió (cantidad, calidad, precios).
    - Si corresponde, se carga el remito como respaldo.
@@ -67,7 +66,11 @@ El sistema no es más que el espejo digital de lo que pasa día a día: pedir me
      :bulb: [Ver infomacio sobre remitos](../../casosParticulares/remito/remitos.md)
      :::
 
-5. **Archivo OC (12.2.09)**  
+5. **Corroborar/a pagar(12.2.10)**
+   Este paso se agrega como una instancia para verificar, como asi para las facturas que estan pendientes de pago haciendo mas facil la busqueda en [Egresos](../../egresos/egresos.md).
+   Una vez registrado el pago o verificado/corregido el registro este debe ser archivado.
+
+6. **Archivo OC (12.2.09)**  
    Una vez finalizada la compra y recibido el remito, la Orden de Compra se **archiva**.
    - En la vida real, esto significa guardar la documentación (OC + remito) en los registros de la empresa.
    - En el sistema, queda archivada y disponible para consultarse en el **Reporte de Compras**, lo que permite hacer un seguimiento histórico de todas las operaciones.

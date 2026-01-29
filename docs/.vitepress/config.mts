@@ -103,7 +103,7 @@ export default withMermaid(
         provider: "local",
       },
     },
-  })
+  }),
 );
 // https://vitepress.dev/reference/site-config
 
@@ -185,6 +185,10 @@ function sidebarFlows(): DefaultTheme.SidebarItem[] {
             {
               text: "Ejecutar la compra",
               link: "/flows/comprasypagos/ejecutar_Compra",
+            },
+            {
+              text: "Corroborar la compra / Pendiente de pago",
+              link: "/flows/comprasypagos/corroborar_Compra",
             },
           ],
         },

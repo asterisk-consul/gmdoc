@@ -24,7 +24,6 @@
 - Hacer clic en el ícono de **lupa** al lado de **Actividades Rel. (H)**.
 - Se abrirá un buscador donde se pueden seleccionar **facturas registradas** o compras relacionadas.
 - El buscador permite:
-
   - **Filtrar por referencia**: escribir la referencia de la factura para encontrarla rápidamente.
   - **Seleccionar múltiples facturas**: se pueden abonar varias facturas en un solo egreso.
     ::: warning
@@ -41,9 +40,7 @@
 
 - Una vez seleccionadas las facturas, en la sección **Detalle** se mostrarán los importes correspondientes.
 - En esta sección se debe:
-
   - Seleccionar **con qué medio se abonará**:
-
     - **Caja**: si se paga en efectivo.
     - **Banco**: si se paga mediante transferencia o cheque.
 
@@ -53,17 +50,24 @@
 ## 4. Agregar Archivos o Comprobantes
 
 - Opcionalmente, se puede adjuntar archivos como:
-
   - Facturas escaneadas.
   - Comprobantes de transferencia.
   - Documentación adicional.
 
 - Hacer clic en **Seleccionar archivo para adjuntar** y cargar los documentos correspondientes.
 
-## 5. Guardar y Continuar
+## 5. Verificar
+
+- Este campos se agrrego con el fin de una etapa de verificarion o de espera en el caso de saber que se va a modificar
+  - Una vez veridficado y que el registro no necesite modificaciones este se archiva haciendo click en **SIGUIENTE**
+
+  :::info
+  Los registros se veran en el reporte de Gastos siempre y cuando estos tengas asociada al menos una factura con articulos asociados a una cuenta contable
+  :::
+
+## 6. Guardar y Continuar
 
 - Una vez completados todos los campos:
-
   - Hacer clic en **GUARDAR** para almacenar el egreso en el sistema.
   - Hacer clic en **SIGUIENTE** se archiva el egreso para visualizarlo en reportes.
 
@@ -71,7 +75,6 @@
 
 - Cada egreso queda registrado con un **ID único** que permite rastrear la transacción.
 - El flujo asegura que todos los pagos estén vinculados a compras registradas, facilitando:
-
   - Reportes de pagos por proveedor.
   - Control de caja y banco.
   - Conciliación contable.
