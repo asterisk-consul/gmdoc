@@ -1,8 +1,8 @@
-// node_modules/.pnpm/lite-youtube-embed@0.3.3/node_modules/lite-youtube-embed/src/lite-yt-embed.js
+// node_modules/lite-youtube-embed/src/lite-yt-embed.js
 var LiteYTEmbed = class _LiteYTEmbed extends HTMLElement {
   connectedCallback() {
     this.videoId = this.getAttribute("videoid");
-    let playBtnEl = this.querySelector(".lty-playbtn");
+    let playBtnEl = this.querySelector(".lyt-playbtn,.lty-playbtn");
     this.playLabel = playBtnEl && playBtnEl.textContent.trim() || this.getAttribute("playlabel") || "Play";
     this.dataset.title = this.getAttribute("title") || "";
     if (!this.style.backgroundImage) {
@@ -12,7 +12,7 @@ var LiteYTEmbed = class _LiteYTEmbed extends HTMLElement {
     if (!playBtnEl) {
       playBtnEl = document.createElement("button");
       playBtnEl.type = "button";
-      playBtnEl.classList.add("lty-playbtn");
+      playBtnEl.classList.add("lyt-playbtn", "lty-playbtn");
       this.append(playBtnEl);
     }
     if (!playBtnEl.textContent) {
@@ -137,6 +137,7 @@ var LiteYTEmbed = class _LiteYTEmbed extends HTMLElement {
     iframeEl.title = this.playLabel;
     iframeEl.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     iframeEl.allowFullscreen = true;
+    iframeEl.referrerPolicy = "strict-origin-when-cross-origin";
     iframeEl.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(this.videoId)}?${this.getParams().toString()}`;
     return iframeEl;
   }

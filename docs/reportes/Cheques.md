@@ -43,7 +43,6 @@ Este reporte permite visualizar el **histórico completo de cheques** organizado
 ### 👥 Filtros de Clientes/Proveedores
 
 - Modos de búsqueda:
-
   - 🏷️ ORIGEN: Solo quien entregó el cheque
   - 🎯 DESTINO: Solo quien lo recibió
   - 🔄 AMBOS: Busca en ambos campos
@@ -76,7 +75,6 @@ Para ayudarte a identificar rápidamente el estado de cada cheque, hemos creado 
    Entidad emisora del cheque
 
 3. **Fechas**:
-
    - 📅 Ingreso: Cuando se registró el cheque
    - 💰 Cobro: Fecha de vencimiento
    - 🚚 Entrega: Fecha de movimiento
@@ -164,7 +162,7 @@ Para ayudarte a identificar rápidamente el estado de cada cheque, hemos creado 
 2. Exportar a Excel (botón `CTRL+E`)
 3. Repetir para Febrero
 4. Comparar usando:
-   ```excel
+   ```md
    =SUMAR.SI(rango_enero, "En Cartera", rango_importes)
    ```
 

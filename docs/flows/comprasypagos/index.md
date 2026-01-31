@@ -67,7 +67,7 @@ El sistema no es más que el espejo digital de lo que pasa día a día: pedir me
      :::
 
 5. **Corroborar/a pagar(12.2.10)**
-   Este paso se agrega como una instancia para verificar, como asi para las facturas que estan pendientes de pago haciendo mas facil la busqueda en [Egresos](../../egresos/egresos.md).
+   Este paso se agrega como una instancia para verificar, como asi para las facturas que estan pendientes de pago haciendo mas facil la busqueda en [Egresos](../egresos/egresos.md).
    Una vez registrado el pago o verificado/corregido el registro este debe ser archivado.
 
 6. **Archivo OC (12.2.09)**  
