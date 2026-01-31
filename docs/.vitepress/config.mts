@@ -231,6 +231,17 @@ function sidebarCasosParticulares(): DefaultTheme.SidebarItem[] {
             },
           ],
         },
+        {
+          text: "Tarjetas de credito",
+          link: "/casosParticulares/pagos%20con%20tarjetas/",
+          collapsed: true,
+          items: [
+            {
+              text: "Pago con tarjetas",
+              link: "/casosParticulares/pagos%20con%20tarjetas/",
+            },
+          ],
+        }
       ],
     },
   ];
